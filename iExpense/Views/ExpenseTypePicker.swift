@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct ExpenseTypePicker: View {
+    @Binding var selection:ExpenseType
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Picker(
+            "Expense Type",
+            selection: $selection
+        ){
+            ForEach(
+                ExpenseType.allCases,
+                id:\.id
+            ){type in
+                Text(type.description.capitalized)
+            }
+        }
     }
 }
 
 struct ExpenseTypePicker_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseTypePicker()
+        
+        Text("NO PREVIEW")
+//        ExpenseTypePicker(selection:.personal)
+//            .previewLayout(.sizeThatFits)
     }
 }
